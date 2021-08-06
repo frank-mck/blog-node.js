@@ -4,6 +4,8 @@ This is a short exercise I have decided to do in preparation for the final proje
 
 I'll be using a tutorial created by Web Dev Simplified, to learn how to build a full stack web application using Node.js, Express and MongoDB.
 
+-------------------------------------------------------------------------------------
+
 ## Setting up Node.js with dependencies
 
 ```
@@ -12,11 +14,13 @@ npm init -y
 npm i express mongoose ejs
 ```
 
-Automatically refresh and reload code in the browser 
+To automatically refresh and reload code in the browser
 ```
 npm i --save-dev nodemon
 ```
-In the package.json file under scripts, add `"devStart": "nodemon server.js"`
+Then in the package.json file under scripts, add `"devStart": "nodemon server.js"`
+
+-------------------------------------------------------------------------------------
 
 ## Creating the server and routes
 
