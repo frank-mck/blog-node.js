@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 ## Connecting to mongoose
 
-In the server.js file, require the following at the top, then connect to the database.
+In the server.js file, require the following at the top, then connect to the database and name the database `blog`.
 ```
 const mongoose = require('mongoose')
 
@@ -86,4 +86,14 @@ const articleSchema = new mongoose.Schema({
 To use our schema definition, we need to convert our articleSchema into a Model we can work with. To do so, we pass it into mongoose.model(modelName, articleSchema):
 
 `module.exports = mongoose.model('Article', articleSchema)`
+
+## To access all parameters
+
+To access all of the parameters from our article form, add this in the server.js file
+```
+app.use(express.urlencoded({ extended: false }))
+```
+This also needs to come first before using the articles router.
+
+It's also best practice to put the article router at the bottom so that it comes after everyhing else.
 
