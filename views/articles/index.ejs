@@ -18,10 +18,14 @@
           <div class="card-subtitle text-muted mb-2">
             <%= article.createdAt.toLocaleDateString() %></div>
           </div>
-          <div class="card-text mb-2"><%= article.description %></div>
-          <a href ='articles/<%= article.id %>' class ="btn btn-primary">Read More</a>
+          <div class="card-text m-3"><%= article.description %></div>
+          <div>
+            <a href ='articles/<%= article.slug %>' class ="btn m-2 btn-primary">Read More</a>
+            <form action ="articles/<%= article.id %>?_method=DELETE" method ="POST" class ='d-inline'>
+              <button type ='submit' class ='btn btn-danger'>Delete</button>
+            </form>
+          </div>
         </div>
-      </div>
     <% }) %>
   </div>
 </body>

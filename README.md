@@ -114,3 +114,42 @@ Then in our model require both libraries.
 const marked = require('marked')
 const slugify = require('slugify')
 ```
+
+## slugify our route to the name of our article Title
+
+```
+//add this additional field to the articleSchema in the model
+  slug: {
+    type: String,
+    require: true,
+    unique: true
+  }
+})
+
+articleSchema.pre('validate', function(next) {
+  if (this.title) {
+    this.slug = slugify(this.title, { lower: true, 
+    strict: true })
+  }
+  next()
+})
+```
+
+## Adding a method override to create an action of "DELETE", "PATCH", "PUT" ect..
+
+To create a method override, in the terminal type `npm i method-override` 
+
+This will alow us to override the method that our form passes so we are not just stuck with the methods "GET" and "POST"
+
+Once thats installed, we need to add this at the top of our server.js file and then use it in our server
+```
+const methodOverride = require('method-override')
+
+app.use(methodOverride('_method'))
+```
+
+Now, when we create a form field we can use that method override to specify the method we want.
+
+This will be slightly different as usually our action would look like `<form action ="/articles/:id/delete">`
+
+But with this we want to specify our action like this `<form action ="/articles/:id?_method=DELETE">` with a method of `POST`
