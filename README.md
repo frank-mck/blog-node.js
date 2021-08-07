@@ -111,11 +111,11 @@ In the terminal type `npm i marked slugify`
 
 Then in our model require both libraries.
 ```
-const marked = require('marked')
 const slugify = require('slugify')
+const marked = require('marked')
 ```
 
-## slugify our route to the name of our article Title
+- ### slugify our route to the name of our article Title
 
 ```
 //add this additional field to the articleSchema in the model
@@ -134,6 +134,43 @@ articleSchema.pre('validate', function(next) {
   next()
 })
 ```
+
+- ### Converting our markdown to HTML
+
+To do this we need to add some more libraries so that we can sanitize our HTML, so people cant add malicious code and run JavaScript on people computer.
+
+In the terminal type `npm i dompurify jsdom` 
+
+`jsdom` helps node.js render HTML as node dosent know how HTML works on it's own.
+
+Again add the libraries to our server.js file 
+```
+const createDomPurify = require('dompurify')
+const { JSDOM } = require('jsdom')
+const dompurify = createDomPurify(new JSDOM().window)
+```
+The reason jsdom is in brackets `{ JSDOM }` is because we only want the JSDOM portion, of what this returns, and only that portion.
+
+All of this is in the documentation of [dompurify](https://www.npmjs.com/package/dompurify)
+
+-------------------------------------
+
+Next we want to add another field to our articleSchema we created in the model:
+
+```
+},
+  sanitizedHtml: {
+    type: String,
+    required: true
+  }
+
+  then in the articleSchema.pre() we need to add an additional if statement:
+
+  if (thismarkdown) {
+    this.sanitizedHtml = dompurify.sanitize(marked(this.markdown))
+  })
+```
+
 
 ## Adding a method override to create an action of "DELETE", "PATCH", "PUT" ect..
 

@@ -10,8 +10,8 @@ mongoose.connect('mongodb://localhost/blog', {
 })
 
 app.use(express.urlencoded({ extended: false }))
-app.set('view engine', 'ejs')
 app.use(methodOverride('_method'))
+app.set('view engine', 'ejs')
 
 app.get('/', async (req, res) => {
   const articles = await Article.find().sort({ createdAt: 'desc' })
