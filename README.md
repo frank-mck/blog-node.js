@@ -44,7 +44,7 @@ app.get('/', (req, res) => {
 
 ## Connecting to mongoose
 
-In the server.js file, require the following at the top, then connect to the database and name the database `blog`.
+In the server.js file, require the following at the top, then connect to the database server `localhost` and name the database `blog`.
 ```
 const mongoose = require('mongoose')
 
@@ -97,3 +97,20 @@ This also needs to come first before using the articles router.
 
 It's also best practice to put the article router at the bottom so that it comes after everyhing else.
 
+## Sorting articles
+
+Use the sort method to sort our createdAt field in descending order
+`const articles = await Article.find().sort({ createdAt: 'desc' })`
+
+## adding aditional libraries to our model
+
+- marked (low-level compiler for parsing markdown without caching or blocking for long periods of time)
+- slugify(slugify is able to turn a long string of text in the url into a slug)
+
+In the terminal type `npm i marked slugify`
+
+Then in our model require both libraries.
+```
+const marked = require('marked')
+const slugify = require('slugify')
+```

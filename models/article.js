@@ -1,4 +1,6 @@
 const mongoose = require('mongoose')
+const marked = require('marked')
+const slugify = require('slugify')
 
 const articleSchema = new mongoose.Schema({
   title: {
