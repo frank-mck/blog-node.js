@@ -187,9 +187,9 @@ app.use(methodOverride('_method'))
 
 Now, when we create a form field we can use that method override to specify the method we want.
 
-This will be slightly different as usually our action would look like `<form action ="/articles/:id/delete">`
+This will be slightly different to what we would normally do `<form action ="/articles/:id/delete">`
 
-But with this we want to specify our action like this `<form action ="/articles/:id?_method=DELETE">` with a method of `POST`
+But with this we want to specify our action like this `<form action ="/articles/:id?_method=DELETE">` with a method of `DELETE`
 
 ### Screens
 
