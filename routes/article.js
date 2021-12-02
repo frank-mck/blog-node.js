@@ -42,8 +42,8 @@ router.put('/:id', async (req, res, next) => {
   next();
 }, saveArticleAndRedirect('edit'))
 
-router.post('/', async (req, res, next) => {
-  req.article = new Article();
+router.post('/:slug', async (req, res, next) => {
+  req.article = await new Article();
   next();
 }, saveArticleAndRedirect('new'))
 
